@@ -2,20 +2,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="#">
     <title>Project 1</title>
 </head>
 <body>
     <h1>Pokedex API Project</h1>
+    <a href="/">Reset Page</a>
     <div class = "endpoint">
-        <h2>/getPokemon</h2>
-        <form action="/getPokemon" method="GET">
+        <h2>/getPokemonByID</h2>
+        <form action="/getPokemonById" method="GET">
             <label for="id">ID: </label>
             <input name="id" type="text">
-            <label for="Name">Name: </label>
-            <input name="Name" type="text">
-            <label for="Type">Type: </label>
-            <input name="Type" type="text">
             <input type="submit" text="Send Request" />
+            <div>
+            <h3>Search Results:</h3>
+            {{#if search1}}
+            {{#each search1}}
+            <li>
+            <strong>Name:</strong> {{name}}<br>
+            <strong>ID:</strong> {{id}}<br>
+            <strong>Type:</strong> {{#each type}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}<br>
+            <strong>Weaknesses:</strong> {{#each weaknesses}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}
+            </li>
+            {{/each}}
+            {{else}}
+            <li>No results found.</li>
+            {{/if}}
+            </div>  
+        </form>
+    </div>
+    <div class = "endpoint">
+        <h2>/getPokemonByName</h2>
+        <form action="/getPokemonByName" method="GET">
+            <label for="name">Name: </label>
+            <input name="name" type="text">
+            <input type="submit" text="Send Request" />
+            <div>
+            <h3>Search Results:</h3>
+            {{#if search2}}
+            {{#each search2}}
+            <li>
+            <strong>Name:</strong> {{name}}<br>
+            <strong>ID:</strong> {{id}}<br>
+            <strong>Type:</strong> {{#each type}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}<br>
+            <strong>Weaknesses:</strong> {{#each weaknesses}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}
+            </li>
+            {{/each}}
+            {{else}}
+            <li>No results found.</li>
+            {{/if}}
+            </div>  
+        </form>
+    </div>
+    <div class = "endpoint">
+        <h2>/getPokemonByType</h2>
+        <form action="/getPokemonByType" method="GET">
+            <label for="type">Type: </label>
+            <input name="type" type="text">
+            <input type="submit" text="Send Request" />
+            <div>
+            <h3>Search Results:</h3>
+            {{#if search3}}
+            {{#each search3}}
+            <li>
+            <strong>Name:</strong> {{name}}<br>
+            <strong>ID:</strong> {{id}}<br>
+            <strong>Type:</strong> {{#each type}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}<br>
+            <strong>Weaknesses:</strong> {{#each weaknesses}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}
+            </li>
+            {{/each}}
+            {{else}}
+            <li>No results found.</li>
+            {{/if}}
+            </div>  
+        </form>
+    </div>
+    <div class = "endpoint">
+        <h2>/getPokemonByWeakness</h2>
+        <form action="/getPokemonByWeakness" method="GET">
+            <label for="weaknesses">Weakness: </label>
+            <input name="weaknesses" type="text">
+            <input type="submit" text="Send Request" />
+            <div>
+            <h3>Search Results:</h3>
+            {{#if search4}}
+            {{#each search4}}
+            <li>
+            <strong>Name:</strong> {{name}}<br>
+            <strong>ID:</strong> {{id}}<br>
+            <strong>Type:</strong> {{#each type}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}<br>
+            <strong>Weaknesses:</strong> {{#each weaknesses}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}
+            </li>
+            {{/each}}
+            {{else}}
+            <li>No results found.</li>
+            {{/if}}
+            </div>  
         </form>
     </div>
 
