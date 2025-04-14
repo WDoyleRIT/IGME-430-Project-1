@@ -100,6 +100,32 @@
             </div>  
         </form>
     </div>
+    <div class = "endpoint">
+        <h2>/addPokemon</h2>
+        <form action="/addPokemon" method="POST">
+            <label for="name">Name: </label>
+            <input name="name" type="text">
+            <input type="submit" text="Send Request" />
+            {{#if pokemon1}}
+            <li>Pokemon successfully added!</li>
+            {{else}}
+            <li></li>
+            {{/if}}
+        </form>
+    </div>
+    <div class = "endpoint">
+        <h2>/addPokemon</h2>
+        <form action="/removePokemon" method="POST">
+            <label for="id">id: </label>
+            <input name="id" type="text">
+            <input type="submit" text="Send Request" />
+            {{#if pokemon1}}
+            <li>Pokemon successfully removed!</li>
+            {{else}}
+            <li></li>
+            {{/if}}
+        </form>
+    </div>
 
     <a href="/getData">View Raw Data</a>
 </body>

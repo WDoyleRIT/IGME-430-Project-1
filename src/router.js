@@ -8,9 +8,10 @@ const router = (app) => {
     app.get('/getPokemonByType', controllers.getPokemonByType);
     app.get('/getPokemonByWeakness', controllers.getPokemonByWeakness);
     app.get('/getData', controllers.getData);
-  
-    // V This doesn't work anymore lol!
-    //app.get('/*', controllers.notFound);
+
+    app.post('/addPokemon', controllers.addPokemon);
+    app.post('/removePokemon', controllers.removePokemon);
+
 };
   
 module.exports = router;

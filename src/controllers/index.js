@@ -41,8 +41,6 @@ let results = pokedex;
 
 results = results.filter((pokemon) => pokemon.type.includes(req.query.type));
 
-console.log(results);
-
 return res.render('index', {
   search3: results,
 });
@@ -53,10 +51,35 @@ const getPokemonByWeakness = (req, res) => {
 
   results = results.filter((pokemon) => pokemon.weaknesses.includes(req.query.weaknesses));
   
-
   return res.render('index', {
     search4: results,
   });
+}
+
+const addPokemon = (req,res) => {
+  const newIndex = pokedex.length + 1;
+  const newString = newIndex.toString();
+  let newName = req.body.name.toLowerCase();
+  newName = newName.charAt(0).toUpperCase() + newName.slice(1);
+
+  const newPokemon = {
+    id: newIndex,
+    num: newString,
+    name: newName,
+  }
+
+  pokedex.push(newPokemon);
+
+  const filePath = `${__dirname}/../../data/pokedex.json`;
+  fs.writeFileSync(filePath, JSON.stringify(pokedex, null, 2), 'utf8');
+
+  return res.render('index', {
+    pokemon1: newPokemon,
+  });
+}
+
+const removePokemon = (req, res) => {
+
 }
 
 const getData = (req, res) => {
@@ -75,6 +98,8 @@ module.exports = {
     getPokemonByName,
     getPokemonByType,
     getPokemonByWeakness,
+    addPokemon,
+    removePokemon,
     notFound,
     getData,
 };
