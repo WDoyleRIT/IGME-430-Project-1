@@ -114,12 +114,12 @@
         </form>
     </div>
     <div class = "endpoint">
-        <h2>/addPokemon</h2>
+        <h2>/removePokemon</h2>
         <form action="/removePokemon" method="POST">
-            <label for="id">id: </label>
+            <label for="id">ID: </label>
             <input name="id" type="text">
             <input type="submit" text="Send Request" />
-            {{#if pokemon1}}
+            {{#if pokemon2}}
             <li>Pokemon successfully removed!</li>
             {{else}}
             <li></li>

@@ -1,8 +1,9 @@
 const { text } = require('body-parser');
 const fs = require('fs');
 const { get } = require('http');
+const path = require('path');
 
-const pokedex = JSON.parse(fs.readFileSync(`${__dirname}/../../data/pokedex.json`));
+let pokedex = JSON.parse(fs.readFileSync(`${__dirname}/../../data/pokedex.json`));
 
 const getIndex = (req, res) => {
     res.render('index');
@@ -66,6 +67,11 @@ const addPokemon = (req,res) => {
     id: newIndex,
     num: newString,
     name: newName,
+    img: null,
+    type: null,
+    height: null,
+    weight: null,
+    weaknesses: null,
   }
 
   pokedex.push(newPokemon);
@@ -79,7 +85,22 @@ const addPokemon = (req,res) => {
 }
 
 const removePokemon = (req, res) => {
+  let newID = req.body.id;
+  let updatedPokedex;
 
+  if(newID){
+    const pokemonId = parseInt(newID, 10);
+    updatedPokedex = pokedex.filter((pokemon) => pokemon.id !== pokemonId);
+  }
+
+  const pokedexPath = path.resolve(`${__dirname}/../../data/pokedex.json`);
+  fs.writeFileSync(pokedexPath, JSON.stringify(updatedPokedex, null, 2));
+
+  pokedex = updatedPokedex;
+
+  return res.render('index', {
+    pokemon2: updatedPokedex,
+  });
 }
 
 const getData = (req, res) => {
